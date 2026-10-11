@@ -24,3 +24,24 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* ===== NUESTROS ESTILOS PERSONALIZADOS ===== */
+.titulo-principal {
+  @apply text-3xl md:text-4xl font-bold text-blue-900 flex items-center justify-center gap-3;
+}
+
+.tarjeta-prueba {
+  @apply bg-white rounded-xl shadow p-5 hover:shadow-lg transition border-l-4 border-sky-500;
+}
+
+.panel-lateral {
+  @apply bg-white rounded-xl shadow p-6 h-fit;
+}
+
+.texto-horario-titulo {
+  @apply font-semibold text-gray-700;
+}
+
+.texto-horario-valor {
+  @apply text-gray-600;
+}
