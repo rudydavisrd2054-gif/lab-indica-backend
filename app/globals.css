@@ -45,3 +45,94 @@ body {
 .texto-horario-valor {
   @apply text-gray-600;
 }
+
+/* Tema exclusivo de la pantalla principal; el detalle conserva sus estilos. */
+.lab-theme {
+  background: var(--lab-bg);
+  color: var(--lab-fg);
+  --lab-bg: #f1f6fb;
+  --lab-surface: #ffffff;
+  --lab-fg: #12233a;
+  --lab-muted: #55657b;
+  --lab-line: #d6e2ee;
+  --lab-brand: #0f4c81;
+  --lab-brand-ink: #ffffff;
+  --lab-track: #dbe6f1;
+  --lab-hl: #0f4c81;
+  --lab-a1: #1d5fb8; --lab-a1-soft: #e2edfb;
+  --lab-a2: #0b7f80; --lab-a2-soft: #dcf3f1;
+  --lab-a3: #b8283b; --lab-a3-soft: #fbe3e7;
+  --lab-a4: #357f30; --lab-a4-soft: #e2f2dd;
+  font-family: var(--font-lab-body-source), "Segoe UI", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  .lab-theme {
+    --lab-bg: #0b1520; --lab-surface: #132033; --lab-fg: #e7eef7;
+    --lab-muted: #9bb0c7; --lab-line: #243750;
+    --lab-brand: #6fb4f3; --lab-brand-ink: #0b1520;
+    --lab-track: #223650; --lab-hl: #6fb4f3;
+    --lab-a1: #86b9f6; --lab-a1-soft: #172c48;
+    --lab-a2: #63d2cd; --lab-a2-soft: #123a3c;
+    --lab-a3: #f293a0; --lab-a3-soft: #402029;
+    --lab-a4: #95d78b; --lab-a4-soft: #213c1f;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-lab-bg: var(--lab-bg);
+  --color-lab-surface: var(--lab-surface);
+  --color-lab-fg: var(--lab-fg);
+  --color-lab-muted: var(--lab-muted);
+  --color-lab-line: var(--lab-line);
+  --color-lab-brand: var(--lab-brand);
+  --color-lab-brand-ink: var(--lab-brand-ink);
+  --color-lab-track: var(--lab-track);
+  --color-lab-hl: var(--lab-hl);
+  --font-lab-display: var(--font-lab-display-source), "Segoe UI", system-ui, sans-serif;
+  --font-lab-mono: var(--font-lab-mono-source), ui-monospace, Menlo, monospace;
+}
+
+.lab-theme [data-area="1"] { --area-color: var(--lab-a1); --area-soft: var(--lab-a1-soft); }
+.lab-theme [data-area="2"] { --area-color: var(--lab-a2); --area-soft: var(--lab-a2-soft); }
+.lab-theme [data-area="3"] { --area-color: var(--lab-a3); --area-soft: var(--lab-a3-soft); }
+.lab-theme [data-area="4"] { --area-color: var(--lab-a4); --area-soft: var(--lab-a4-soft); }
+.lab-theme [data-area="5"] { --area-color: var(--lab-brand); --area-soft: var(--lab-track); }
+.lab-theme :focus-visible {
+  outline: 3px solid var(--lab-brand);
+  outline-offset: 2px;
+}
+
+.lab-theme .font-lab-display {
+  font-family: var(--font-lab-display-source), "Segoe UI", system-ui, sans-serif;
+}
+.lab-theme .font-lab-mono {
+  font-family: var(--font-lab-mono-source), ui-monospace, Menlo, monospace;
+}
+.lab-theme .lab-test-name {
+  transform-origin: left center;
+  transition: transform 180ms ease;
+}
+@media (hover: hover) {
+  .lab-theme .lab-test:hover { background: var(--area-soft); }
+  .lab-theme .lab-test:hover .lab-test-name { transform: scale(1.08); }
+}
+.lab-theme .lab-test:focus-visible { background: var(--area-soft); }
+.lab-theme .lab-test:focus-visible .lab-test-name { transform: scale(1.08); }
+.lab-theme .lab-dialog::backdrop { background: rgba(8, 20, 36, .55); }
+.lab-theme .lab-dialog[open] { animation: lab-pop 180ms ease; }
+html:has(.lab-theme .lab-dialog[open]), body:has(.lab-theme .lab-dialog[open]) { overflow: hidden; }
+@keyframes lab-pop {
+  from { opacity: 0; transform: translateY(8px) scale(.98); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lab-theme .lab-test-name { transition: none; }
+  .lab-theme .lab-test:hover .lab-test-name,
+  .lab-theme .lab-test:focus-visible .lab-test-name { transform: none; }
+  .lab-theme .lab-dialog[open] { animation: none; }
+}
